@@ -57,7 +57,11 @@ namespace Task3
             #endregion
             Console.ReadLine();
         }
-
+        /// <summary>
+        /// Реализация метода GetValue для делегата типа Func
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
         private static int GetValue(KeyValuePair<string, int> arg)
         {
             return arg.Value;
