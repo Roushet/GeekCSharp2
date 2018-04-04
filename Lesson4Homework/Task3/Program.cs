@@ -46,7 +46,7 @@ namespace Task3
 
             Func<KeyValuePair<string, int>, int> func = GetValue;
 
-            var del = dict.OrderBy(GetValue);
+            var del = dict.OrderBy(func);
             Console.WriteLine("OrderBy FUNC delegate");
 
             foreach (var entry in del)
