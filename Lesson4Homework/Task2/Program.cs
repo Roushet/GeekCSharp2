@@ -26,15 +26,47 @@ namespace Task2
             //foreach(int i in list)
             //    Console.WriteLine("{0}", i);
 
-            Console.WriteLine(list.Distinct().Count());
+            //Console.WriteLine(list.Distinct().Count());
 
-            int res = (from x in list
-                       select x).Distinct().Count();
+            //int result = (from x in list
+            //           select x).Distinct().Count();
 
-            Console.WriteLine(res);
+            Console.WriteLine("--------");
+            Console.WriteLine(DistinctCount<int>(list));
+            Console.WriteLine("--------");
+            Console.WriteLine(DistinctCountLinq<int>(list));
+
 
             Console.ReadLine();
 
         }
+
+        /// <summary>
+        /// Считает количесто уникальных вхождений типа Т в переданном списке
+        /// Возвращает число
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        private static int DistinctCount<T>(List<T> list)
+        {
+            return list.Distinct<T>().Count();
+        }
+
+
+        /// <summary>
+        /// Считает количесто уникальных вхождений типа Т в переданном списке
+        /// Возвращает число
+        /// Реализация через Линк
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        private static int DistinctCountLinq<T>(List<T> list)
+        {
+            return (from x in list
+                      select x).Distinct().Count();
+        }
+
     }
 }
