@@ -14,6 +14,9 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
+                <MenuItem Header="Save" x:Name="menuSave" Click="menuSave_Click">
+                </MenuItem>
+                <MenuItem Header="Load"/>
                 <MenuItem Header="Exit">
                     <MenuItem.Command>
                         <local:CloseApplication/>
@@ -70,18 +73,24 @@
                             <ListBox.Style>
                                 <Style TargetType="ListBox">
                                     <!--<Setter Property="Background" Value="Green" />
-                                    --><!-- Определение триггеров для стиля даёт больше номенклатуру триггеров и больше их возможностей --><!--
+                                    -->
+                                    <!-- Определение триггеров для стиля даёт больше номенклатуру триггеров и больше их возможностей -->
+                                    <!--
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="Red" />
                                         </Trigger>
 
-                                        --><!-- Триггер данных можно подключить к чему угодно! --><!--
+                                        -->
+                                    <!-- Триггер данных можно подключить к чему угодно! -->
+                                    <!--
                                         <DataTrigger Binding="{Binding Name}" Value="qwe">
                                             <Setter Property="Foreground" Value="Lime" />
                                         </DataTrigger>
 
-                                        --><!-- Мульти-триггер сработает только при выполнении ВСЕХ установленных для него условий --><!--
+                                        -->
+                                    <!-- Мульти-триггер сработает только при выполнении ВСЕХ установленных для него условий -->
+                                    <!--
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
                                                 <Condition Property="IsMouseOver" Value="True" />

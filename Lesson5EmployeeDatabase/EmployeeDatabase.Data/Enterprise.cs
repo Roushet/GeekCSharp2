@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -9,6 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using EmployeeDatabase;
+using System.Windows;
+using System.Reflection;
 
 namespace EmployeeDatabase.Data
 {
@@ -18,7 +22,16 @@ namespace EmployeeDatabase.Data
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private static Enterprise _instance;
+
         private string _Name;
+
+        public static Enterprise GetInstance()
+        {
+            if (_instance == null)
+                return Enterprise.LoadFromFile("data\\enterprise.xml");
+            return _instance;
+        }
 
         [XmlAttribute]
         public string Name
@@ -55,11 +68,36 @@ namespace EmployeeDatabase.Data
                 return (Enterprise)serializer.Deserialize(reader);
         }
 
-        public void SaveToFile(string file)
+        public void SaveToFile()
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "XML file (*.xml)|*.xml";
+            saveFileDialog.DefaultExt = "xml";
+            //TODO переделать относительный путь из пропертей
+            saveFileDialog.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            saveFileDialog.ShowDialog();
+
+            if (String.IsNullOrEmpty(saveFileDialog.FileName)) return;
+
             var serializer = new XmlSerializer(typeof(Enterprise));
-            using (var writer = File.CreateText(file))
+            using (var writer = File.CreateText(saveFileDialog.FileName))
                 serializer.Serialize(writer, this);
         }
+
+        public void LoadFromFileDialog()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML file (*.xml)|*.xml";
+            openFileDialog.DefaultExt = "xml";
+            openFileDialog.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            openFileDialog.ShowDialog();
+
+            if (String.IsNullOrEmpty(openFileDialog.FileName)) return;
+
+            var serializer = new XmlSerializer(typeof(Enterprise));
+            using (var writer = File.CreateText(openFileDialog.FileName))
+                serializer.Serialize(writer, this);
+        }
+
     }
 }

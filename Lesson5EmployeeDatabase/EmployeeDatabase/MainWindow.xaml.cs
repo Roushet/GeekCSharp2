@@ -58,5 +58,11 @@ namespace EmployeeDatabase
 
             }
         }
+
+        private void menuSave_Click(object sender, RoutedEventArgs e)
+        {
+            Enterprise instance = Enterprise.GetInstance();
+            instance.SaveToFile();
+        }
     }
 }
