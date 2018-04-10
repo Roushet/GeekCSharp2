@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enterprise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            Name="ЗАО SpaceX">
+  <Departament Name="IT">
+    <Employee Name="Иванов Иван Иванович" Age="29" Salary="35000" />
+    <Employee Name="Петров Пётр Петровоич" Age="42" Salary="87000" />
+    <Employee Name="Сидоров Сидор Сидорович" Age="37" Salary="57000" />
+  </Departament>
+  <Departament Name="Бухгалтерия">
+    <Employee Name="Иванов Пётр Сидорович" Age="37" Salary="87000" />
+    <Employee Name="Сидоров Иван Петровоич" Age="22" Salary="13000" />
+    <Employee Name="Петров Сидор Никифорович" Age="30" Salary="62000" />
+  </Departament>
+  <Departament Name="PR">
+    <Employee Name="Петров Иван Дмитриевич" Age="18" Salary="35000" />
+    <Employee Name="Иванов Сидор Михаилович" Age="43" Salary="53000" />
+    <Employee Name="Сидоров Алексей Андреевич" Age="80" Salary="180000" />
+  </Departament>
+</Enterprise>
