@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
-    class EmployeeList : ViewModel
+    public class EmployeeList : ViewModel
     {
         //public event PropertyChangedEventHandler PropertyChanged;
 

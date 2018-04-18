@@ -11,7 +11,7 @@ using Employees.Annotations;
 namespace Employees
 {
 	/// <summary>Модель-представления</summary>
-	abstract class ViewModel :
+	public abstract class ViewModel :
 		MarkupExtension, 		 // Говорим, что модель является расширением разметки XAML
 		INotifyPropertyChanged	 // Поддерживает уведомления изменений свйоств
 	{

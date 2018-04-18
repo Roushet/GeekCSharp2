@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employees", "Employees\Employees.csproj", "{6F5ED57A-5BA4-492D-A6CE-5DAD5763C0DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employes.DataBase", "Employes.DataBase\Employes.DataBase.csproj", "{1D0344C8-17BD-4660-BE10-FE1C333BEB18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeesWcf", "EmployeesWcf\EmployeesWcf.csproj", "{017FCC37-D865-44AF-A396-18180D610F99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1D0344C8-17BD-4660-BE10-FE1C333BEB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D0344C8-17BD-4660-BE10-FE1C333BEB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D0344C8-17BD-4660-BE10-FE1C333BEB18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{017FCC37-D865-44AF-A396-18180D610F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{017FCC37-D865-44AF-A396-18180D610F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{017FCC37-D865-44AF-A396-18180D610F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{017FCC37-D865-44AF-A396-18180D610F99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
