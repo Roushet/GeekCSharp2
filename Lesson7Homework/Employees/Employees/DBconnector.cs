@@ -30,13 +30,14 @@ namespace Employees
                 adapter.Fill(people);
 
                 for (int i = 0; i < people.Tables[0].Rows.Count; i++)
-                    //TODO переделать базу, чтобы не было затычек (или переделать класс)
-                        list.Add(new Employee (people.Tables[0].Rows[i]["Name"].ToString(), 0, 20));
+                    list.Add(new Employee(people.Tables[0].Rows[i]["Name"].ToString(),
+                        Convert.ToInt32(people.Tables[0].Rows[i]["Age"]),
+                        Convert.ToDecimal(people.Tables[0].Rows[i]["Salary"])));
                 return list;
             }
         }
 
-        public static void AddEmployee(string name)
+        public static void AddEmployee(string name, int age, decimal salary)
         {
 
             using (var connection = new SqlConnection(conection_string))
@@ -45,26 +46,26 @@ namespace Employees
                 var adapter = new SqlDataAdapter(@"SELECT * FROM People", connection); // Соединение, при этом, адаптер откроет сам, когда ему будет надо
 
 
-                var insert = new SqlCommand(@"INSERT INTO People (Name,Birthday,Email,Phone) VALUES (@Name,@Birthday,@Email,@Phone); SET @ID=@@IDENTITY", connection);
+                var insert = new SqlCommand(@"INSERT INTO People (Name,Age,Salary) VALUES (@Name,@Age,@Salary); SET @ID=@@IDENTITY", connection);
                 // Добавляем нужные параметры
                 insert.Parameters.Add("@Name", SqlDbType.NVarChar, -1, "Name");
-                insert.Parameters.Add("@Birthday", SqlDbType.NVarChar, -1, "Birthday");
-                insert.Parameters.Add("@Email", SqlDbType.NVarChar, 100, "Email");
-                insert.Parameters.Add("@Phone", SqlDbType.NVarChar, -1, "Phone");
+                insert.Parameters.Add("@Age", SqlDbType.NVarChar, -1, "Age");
+                insert.Parameters.Add("@Salary", SqlDbType.NVarChar, 100, "Salary");
                 insert.Parameters.Add("@ID", SqlDbType.Int, 0, "ID").Direction = ParameterDirection.Output; // Указываем, что параметр команды будет выходным - из него можно бдуте прочитать данные в Вашей программе
 
                 adapter.InsertCommand = insert;
 
-                var update = new SqlCommand(@"UPDATE People SET Name=@Name,Birthday=@Birthday WHERE ID=@ID", connection);
+                var update = new SqlCommand(@"UPDATE People SET Name=@Name,Age=@Age WHERE ID=@ID", connection);
                 update.Parameters.Add("@Name", SqlDbType.NVarChar, -1, "Name");
-                update.Parameters.Add("@Birthday", SqlDbType.NVarChar, -1, "Birthday");
+                update.Parameters.Add("@Age", SqlDbType.NVarChar, -1, "Age");
                 update.Parameters.Add("@ID", SqlDbType.NVarChar, -1, "ID").SourceVersion = DataRowVersion.Original;
 
                 adapter.UpdateCommand = update;
 
                 var row = people.Tables[0].NewRow();
                 row["Name"] = name;  // Заполняем её.
-                row["Birthday"] = "21.04.2012";        // Строка пока никак не связана с таблицей. Она просто имеет структуру этой таблицы.
+                row["Age"] = age;        // Строка пока никак не связана с таблицей. Она просто имеет структуру этой таблицы.
+                row["Salary"] = salary;
                 people.Tables[0].Rows.Add(row);                   // Добавляем строку в таблицу
 
                 adapter.Update(people);              // Заставляем адаптер обновить данные в БД на основе модифицированного нами локального набора данных

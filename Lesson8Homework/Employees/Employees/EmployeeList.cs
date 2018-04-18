@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
-    class EmployeeList : ViewModel
+    public class EmployeeList : ViewModel
     {
         //public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,7 +28,7 @@ namespace Employees
         {
             List.Add(employee);
             //Заготовка для команды добавляения сотрудника
-            DBconnector.AddEmployee(employee.Name);
+            DBconnector.AddEmployee(employee.Name, employee.Age, employee.Salary);
             OnPropertyChanged(nameof(List));
         }
 

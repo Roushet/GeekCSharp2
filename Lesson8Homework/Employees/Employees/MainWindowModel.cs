@@ -49,7 +49,7 @@ namespace Employees
         private void OnAddEmployeeCommandExecuted(object obj)
         {
             //временная заглушка, нужна полноценная форма добавления сотрудника
-            _list.AddEmployee(new Employee("Имя", 20, 60));
+            _list.AddEmployee(new Employee("Иван", 20, 60));
             OnPropertyChanged(nameof(List));
         }
 
