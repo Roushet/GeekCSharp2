@@ -17,6 +17,7 @@ namespace Employees
         //конструктор без параметров
         public EmployeeList()
         {
+            DBconnector.Connector.Refresh();
             //заполняю список сотрудниками из базы данных в конструкторе класса
             List = new ObservableCollection<Employee>(DBconnector.GetPeople());
         }
@@ -33,14 +34,24 @@ namespace Employees
         }
 
         /// <summary>
-        /// Публичный метод удаления сотрудника
+        /// Публичный метод удаления сотрудника по имени
         /// </summary>
-        /// <param name="employee">Тип сотрудник, которого надо удалить</param>
-        public void Remove(Employee employee)
+        /// <param name="name">Имя сотрудника для удаления</param>
+        public void Remove(string name)
         {
-            if (List.Contains(employee))
-                List.Remove(employee);
+            DBconnector.RemoveEmployeeByName(name);
+
+            foreach (var emp in List)
+            {
+                if (emp.Name == name)
+                {
+                    List.Remove(emp);
+                    break;
+                }
+
+            }
             OnPropertyChanged(nameof(List));
         }
+
     }
 }
