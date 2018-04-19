@@ -15,11 +15,15 @@ namespace EmployeesWcf
     public class EmployeeService : IEmployeeService
     {
         private EmployeeList _list = new EmployeeList();
-        public ObservableCollection<Employee> List => _list.List;
+
+        public void AddEmployee(string name, int age, decimal salary, string comment = "")
+        {
+            _list.AddEmployee(new Employee(name, age, salary));
+        }
 
         public int GetEmployeesCount()
         {
-            return List.Count;
+            return _list.List.Count;
         }
     }
 }
